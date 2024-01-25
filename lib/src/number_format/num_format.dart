@@ -261,7 +261,8 @@ sealed class NumericNumFormat extends NumFormat {
   @override
   CellValue read(String v) {
     // check if scientific notation e.g. 1E-3
-    final eIdx = v.indexOf('E');
+    final eIdx = v.indexOf(RegExp(r"e|E"));
+
     final decimalSeparatorIdx = v.indexOf('.');
 
     if (decimalSeparatorIdx == -1 && eIdx == -1) {
