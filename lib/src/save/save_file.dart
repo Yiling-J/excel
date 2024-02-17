@@ -396,7 +396,8 @@ class Save {
       borders.children.add(borderElement);
     });
 
-    final styleSheet = _excel._xmlFiles['xl/styles.xml']!;
+    final styleSheet =
+        _excel._xmlFiles['xl/styles.xml']!.getElement("styleSheet");
 
     XmlElement celx = styleSheet.findAllElements('cellXfs').first;
     var cellAttribute = celx.getAttributeNode('count');
