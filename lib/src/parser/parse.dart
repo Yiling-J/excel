@@ -590,10 +590,6 @@ class Parser {
         break;
       // error
       case 'e':
-      // formula
-      case 'str':
-        value = FormulaCellValue(_parseValue(node.findElements('v').first));
-        break;
       // inline string
       case 'inlineStr':
         // <c r='B2' t='inlineStr'>
@@ -604,28 +600,22 @@ class Parser {
       // number
       case 'n':
       default:
-        var formulaNode = node.findElements('f');
-        if (formulaNode.isNotEmpty) {
-          value = FormulaCellValue(_parseValue(formulaNode.first).toString());
-        } else {
-          final vNode = node.findElements('v').firstOrNull;
-          if (vNode == null) {
-            value = null;
-          } else if (s1 != null) {
-            final v = _parseValue(vNode);
-            var numFmtId = _excel._numFmtIds[s];
-            final numFormat = _excel._numFormats.getByNumFmtId(numFmtId);
-            if (numFormat == null) {
-              assert(
-                  false, 'found no number format spec for numFmtId $numFmtId');
-              value = NumFormat.defaultNumeric.read(v);
-            } else {
-              value = numFormat.read(v);
-            }
-          } else {
-            final v = _parseValue(vNode);
+        final vNode = node.findElements('v').firstOrNull;
+        if (vNode == null) {
+          value = null;
+        } else if (s1 != null) {
+          final v = _parseValue(vNode);
+          var numFmtId = _excel._numFmtIds[s];
+          final numFormat = _excel._numFormats.getByNumFmtId(numFmtId);
+          if (numFormat == null) {
+            assert(false, 'found no number format spec for numFmtId $numFmtId');
             value = NumFormat.defaultNumeric.read(v);
+          } else {
+            value = numFormat.read(v);
           }
+        } else {
+          final v = _parseValue(vNode);
+          value = NumFormat.defaultNumeric.read(v);
         }
     }
 
