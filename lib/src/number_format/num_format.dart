@@ -333,7 +333,7 @@ class CustomNumericNumFormat extends NumericNumFormat
         null => true,
         FormulaCellValue() => true,
         IntCellValue() => true,
-        TextCellValue() => false,
+        TextCellValue() => true,
         BoolCellValue() => true,
         DoubleCellValue() => true,
         DateCellValue() => false,
