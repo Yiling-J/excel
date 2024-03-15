@@ -496,8 +496,8 @@ sealed class TimeNumFormat extends NumFormat {
         TextCellValue() => false,
         BoolCellValue() => false,
         DoubleCellValue() => false,
-        DateCellValue() => false,
-        DateTimeCellValue() => false,
+        DateCellValue() => true,
+        DateTimeCellValue() => true,
         TimeCellValue() => true,
       };
 }
