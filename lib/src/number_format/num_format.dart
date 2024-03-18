@@ -230,6 +230,7 @@ bool _formatCodeLooksLikeDateTime(String formatCode) {
 
     switch (c) {
       case 'y':
+      case 'a':
       case 'm':
       case 'd':
       case 'h':
