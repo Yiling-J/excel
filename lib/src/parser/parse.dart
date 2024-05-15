@@ -590,6 +590,9 @@ class Parser {
         break;
       // error
       case 'e':
+      // formula
+      case 'str':
+        value = TextCellValue(_parseValue(node.findElements('v').first));
       // inline string
       case 'inlineStr':
         // <c r='B2' t='inlineStr'>
